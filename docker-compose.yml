@@ -11,8 +11,6 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
-    networks:
-      - imply
 
   broker:
     image: confluentinc/cp-enterprise-kafka:5.5.0
@@ -31,8 +29,6 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-    networks:
-      - imply
 
   ksqldb-server:
     image: confluentinc/ksqldb-server:0.11.0
@@ -47,8 +43,6 @@ services:
       KSQL_BOOTSTRAP_SERVERS: broker:9092
       KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
-    networks:
-      - imply
 
   ksqldb-cli:
     image: confluentinc/ksqldb-cli:0.11.0
@@ -58,8 +52,6 @@ services:
       - ksqldb-server
     entrypoint: /bin/sh
     tty: true
-    networks:
-      - imply
 
   nifi:
     image: apache/nifi:latest
@@ -68,16 +60,12 @@ services:
       - broker
     ports:
       - "8080:8080"
-    networks:
-      - imply
 
   mysql:
     image: mysql:5.7.26
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: imply
-    networks:
-      - imply
 
   imply-manager:
     image: imply/manager
@@ -89,8 +77,6 @@ services:
     env_file: 
       - env.secret
       - env.list
-    networks:
-      - imply
 
   imply-agent:
     image: imply/agent
@@ -103,10 +89,4 @@ services:
       - "8888:8888"
     environment:
       IMPLY_MANAGER_HOST: imply-manager
-    networks:
-      - imply
-    
-networks:
-  imply:
-    driver: bridge
 
