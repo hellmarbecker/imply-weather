@@ -29,6 +29,10 @@ Create two topics for the weather data. For instance, using the standard Kafka c
 
     ./kafka-topics.sh --create --topic weather --partitions 1 --bootstrap-server localhost:29092
     ./kafka-topics.sh --create --topic weather-raw --partitions 1 --bootstrap-server localhost:29092
+    
+### Confluent Schema Registry
+
+Schema Registry is available at `localhost:8081`.
 
 ### NiFi
 
