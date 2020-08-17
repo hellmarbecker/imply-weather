@@ -4,7 +4,7 @@ Use the weather flow by Tim Spann (https://github.com/tspannhw/ClouderaFlowManag
 
 Contains a docker-compose file that deploys:
   - NiFi (Apache OSS)
-  - ksqldb (by Confluent)
+  - Confluent Platform including ksqldb (by Confluent)
   - Imply Manager & Agent (by Imply)
   
 In the repository, you must create a file named `env.secret` that contains one line:
