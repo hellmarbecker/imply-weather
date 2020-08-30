@@ -93,8 +93,6 @@ services:
     depends_on:
       - zookeeper
       - broker
-      - schema-registry
-      - connect
       - ksqldb-server
     ports:
       - "9021:9021"
